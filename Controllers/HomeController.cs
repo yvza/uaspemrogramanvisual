@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using mvcwithlogin.Models;
 
 namespace mvcwithlogin.Controllers;
@@ -18,7 +19,18 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    // [Authorize]
+    public IActionResult Playgame()
+    {
+        return View();
+    }
+
+    public IActionResult Userstats()
+    {
+        return View();
+    }
+
+    public IActionResult Banstats()
     {
         return View();
     }
