@@ -40,7 +40,7 @@ public class HomeController : Controller
     [Authorize]
     public IActionResult Controlarea()
     {
-        return View();
+        return Redirect("/ControlArea");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
