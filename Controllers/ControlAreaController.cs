@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using mvcwithlogin.Models;
+using System.Net.Http;
 
 namespace mvcwithlogin.Controllers
 {
@@ -21,9 +22,9 @@ namespace mvcwithlogin.Controllers
         // GET: ControlArea
         public async Task<IActionResult> Index()
         {
-              return _context.AspNetUsers != null ? 
-                          View(await _context.AspNetUsers.ToListAsync()) :
-                          Problem("Entity set 'dotnetuasContext.AspNetUsers'  is null.");
+            return _context.AspNetUsers != null ?
+                        View(await _context.AspNetUsers.ToListAsync()) :
+                        Problem("Entity set 'dotnetuasContext.AspNetUsers'  is null.");
         }
 
         // GET: ControlArea/Details/5
@@ -118,21 +119,27 @@ namespace mvcwithlogin.Controllers
         }
 
         // GET: ControlArea/Delete/5
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Ban(string id)
         {
-            if (id == null || _context.AspNetUsers == null)
-            {
-                return NotFound();
-            }
+            var client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync("http://localhost/uas/transaksi.php?action=ban&id=" + id);
+            return Redirect("/ControlArea");
+        }
 
-            var aspNetUser = await _context.AspNetUsers
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (aspNetUser == null)
-            {
-                return NotFound();
-            }
+        // GET: ControlArea/Delete/5
+        public async Task<IActionResult> Sus(string id)
+        {
+            var client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync("http://localhost/uas/transaksi.php?action=sus&id=" + id);
+            return Redirect("/ControlArea");
+        }
 
-            return View(aspNetUser);
+        // GET: ControlArea/Delete/5
+        public async Task<IActionResult> Release(string id)
+        {
+            var client = new HttpClient();
+            HttpResponseMessage response = await client.GetAsync("http://localhost/uas/transaksi.php?action=release&id=" + id);
+            return Redirect("/ControlArea");
         }
 
         // POST: ControlArea/Delete/5
@@ -149,14 +156,14 @@ namespace mvcwithlogin.Controllers
             {
                 _context.AspNetUsers.Remove(aspNetUser);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool AspNetUserExists(string id)
         {
-          return (_context.AspNetUsers?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.AspNetUsers?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
