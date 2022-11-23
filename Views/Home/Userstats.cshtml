@@ -1,6 +1,56 @@
 @{
-    ViewData["Title"] = "User Stats";
+    ViewData["Title"] = "PlayerStats";
 }
 <h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's user stats.</p>
+<p>Confirmed vs Unconfirmed Email </p>
+
+<div>
+  <canvas width="600" height="600" id="myChart"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+@section Scripts {
+    <script>
+        const ctx = document.getElementById('myChart');
+
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Confirmed',
+                    'Unconfirmed',
+                ],
+                datasets: [{
+                    label: 'Total',
+                    data: [0, 0],
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        $.ajax({
+            url: 'http://localhost/uas/transaksi.php?ban_stats=get',
+            success: function(data) {
+            // process your data to pull out what you plan to use to update the chart
+            // e.g. new label and a new data point
+            let result = JSON.parse(data)
+            // add new label and data point to chart's underlying data structures
+            //myChart.data.labels.push("Post " + postId++);
+            myChart.data.datasets[0].data = [result.total_confirmed_email, result.total_unconfirmed_email];
+            
+            // re-render the chart
+            myChart.update();
+            }
+        });
+    </script>
+}
