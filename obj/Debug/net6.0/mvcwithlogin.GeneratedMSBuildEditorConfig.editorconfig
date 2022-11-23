@@ -55,6 +55,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/yuza/Desktop/mvcwithlogin/Views/ControlArea/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udHJvbEFyZWEvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/yuza/Desktop/mvcwithlogin/Views/ControlArea/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udHJvbEFyZWEvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/yuza/Desktop/mvcwithlogin/Views/ControlArea/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udHJvbEFyZWEvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/yuza/Desktop/mvcwithlogin/Views/ControlArea/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udHJvbEFyZWEvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/yuza/Desktop/mvcwithlogin/Views/ControlArea/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udHJvbEFyZWEvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/yuza/Desktop/mvcwithlogin/Views/Home/Banstats.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9CYW5zdGF0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
