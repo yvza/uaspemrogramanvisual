@@ -19,18 +19,26 @@ public class HomeController : Controller
         return View();
     }
 
-    // [Authorize]
+    [Authorize]
     public IActionResult Playgame()
     {
         return View();
     }
 
+    [Authorize]
     public IActionResult Userstats()
     {
         return View();
     }
 
+    [Authorize]
     public IActionResult Banstats()
+    {
+        return View();
+    }
+
+    [Authorize]
+    public IActionResult Controlarea()
     {
         return View();
     }
