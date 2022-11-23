@@ -43,42 +43,40 @@ namespace mvcwithlogin.Models
 
             modelBuilder.Entity<AspNetHasPunishment>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.UserId)
+                    .HasName("PRIMARY");
 
                 entity.ToTable("AspNetHasPunishment");
 
                 entity.HasIndex(e => e.Type, "Type");
-
-                entity.HasIndex(e => e.UserId, "UserId");
 
                 entity.Property(e => e.Duration).HasColumnType("int(11)");
 
                 entity.Property(e => e.Type).HasColumnType("int(11)");
 
                 entity.HasOne(d => d.TypeNavigation)
-                    .WithMany()
+                    .WithMany(p => p.AspNetHasPunishments)
                     .HasForeignKey(d => d.Type)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("AspNetHasPunishment_ibfk_2");
 
                 entity.HasOne(d => d.User)
-                    .WithMany()
-                    .HasForeignKey(d => d.UserId)
+                    .WithOne(p => p.AspNetHasPunishment)
+                    .HasForeignKey<AspNetHasPunishment>(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("AspNetHasPunishment_ibfk_1");
             });
 
             modelBuilder.Entity<AspNetPlayerDetail>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.UserId)
+                    .HasName("PRIMARY");
 
-                entity.HasIndex(e => e.UserId, "UserId");
-
-                entity.Property(e => e.HasPunishment).HasMaxLength(255);
+                entity.Property(e => e.HasPunishment).HasColumnType("int(11)");
 
                 entity.HasOne(d => d.User)
-                    .WithMany()
-                    .HasForeignKey(d => d.UserId)
+                    .WithOne(p => p.AspNetPlayerDetail)
+                    .HasForeignKey<AspNetPlayerDetail>(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("AspNetPlayerDetails_ibfk_1");
             });
