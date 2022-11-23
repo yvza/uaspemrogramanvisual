@@ -7,9 +7,6 @@
 
 <h1>Player Lists</h1>
 
-@* <p>
-    <a asp-action="Create">Create New</a>
-</p> *@
 <table class="table">
     <thead>
         <tr>
@@ -32,12 +29,9 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                @* <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
-                <a asp-action="Delete" asp-route-id="@item.Id">Ban</a>
-                <a asp-action="Delete" asp-route-id="@item.Id">Suspend</a>
-                <a asp-action="Delete" asp-route-id="@item.Id">Release</a>
+                <a asp-action="Ban" asp-route-id="@item.Id" class="btn btn-danger">Ban</a>
+                <a asp-action="Sus" asp-route-id="@item.Id" class="btn btn-warning">Suspend</a>
+                <a asp-action="Release" asp-route-id="@item.Id" class="btn btn-outline-primary">Release</a>
             </td>
         </tr>
 }
