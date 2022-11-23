@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using mvcwithlogin.Data;
+using mvcwithlogin.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 // var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
@@ -9,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 //manually added by me--
 builder.Services.AddMvc();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseMySql("server=localhost;database=dotnetuas;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.25-mariadb"))
+);
+builder.Services.AddDbContext<dotnetuasContext>(options =>
     options.UseMySql("server=localhost;database=dotnetuas;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.25-mariadb"))
 );
 //manually added by me--
