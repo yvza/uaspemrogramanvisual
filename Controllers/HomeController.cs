@@ -51,12 +51,7 @@ public class HomeController : Controller
     [Authorize]
     public IActionResult Controlarea()
     {
-        var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        ViewBag.uuid = userId;
-        TempData["uuid"] = userId;
-        // return View();
-        // return RedirectToAction("Index", "ControlArea");
-        return Redirect("/ControlArea");
+        return RedirectToAction("Index", "ControlArea");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
