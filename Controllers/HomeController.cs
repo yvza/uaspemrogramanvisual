@@ -18,6 +18,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        ViewBag.uuid = userId;
         return View();
     }
 
@@ -26,24 +28,34 @@ public class HomeController : Controller
     {
         var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
         ViewBag.Tes = userId;
+        ViewBag.uuid = userId;
         return View();
     }
 
     [Authorize]
     public IActionResult Userstats()
     {
+        var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        ViewBag.uuid = userId;
         return View();
     }
 
     [Authorize]
     public IActionResult Banstats()
     {
+        var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        ViewBag.uuid = userId;
         return View();
     }
 
     [Authorize]
     public IActionResult Controlarea()
     {
+        var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        ViewBag.uuid = userId;
+        TempData["uuid"] = userId;
+        // return View();
+        // return RedirectToAction("Index", "ControlArea");
         return Redirect("/ControlArea");
     }
 
