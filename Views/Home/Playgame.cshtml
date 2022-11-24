@@ -2,7 +2,7 @@
     ViewData["Title"] = "Play Game";
 }
 <style>
-.game-container
+#game-container
 {
 background-image: url('https://raw.githubusercontent.com/naklecha/doodleship/master/bp.png');
 margin: 0px;
@@ -56,14 +56,14 @@ margin-top: 50px;
     margin: 0px;
 }
 
-#userid, #banned, #suspended {display: none;}
+#userid, #banned, #suspended, #game-container, #game-control {display: none;}
 
 #game-control{
     margin-top: 30px;
 }
 </style>
 
-<section class="game-container">
+<section id="game-container">
     <div class = "info">
         <p>PLAYER-<span id="name"></span> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp SCORE-<span id="score">0</span></p>
     </div>
@@ -85,6 +85,9 @@ margin-top: 50px;
         </div>
     </div>
 </section>
+<section id="game-control">
+    <button type="button" class="btn btn-primary" onClick="startGame()">Gass Playy</button>
+</section>
 
 <section id="banned">Banned</section>
 
@@ -92,10 +95,6 @@ margin-top: 50px;
 
 @* <p>Use this page to detail your site's play game.</p> *@
 <p id="userid">@ViewBag.Tes</p>
-
-<section id="game-control">
-    <button type="button" class="btn btn-primary" onClick="startGame()">Gass Playy</button>
-</section>
 
 @section Scripts {
     <script>
@@ -227,19 +226,35 @@ window.addEventListener("keypress",obj.f,false) //keypress event handler
             url: "http://localhost/uas/transaksi.php?punishment=get&userid="+$('p#userid')[0].innerText,
             type: "GET",
             success: function(data) {
-                let result = JSON.parse(data)
-                switch (result.Type) {
-                    case 1:
+                //let result = JSON.parse(data)
+                //console.log(data)
+                switch (data.Type) {
+                    case 1: //sus
+                        console.log('1')
+                        $('#game-container').hide()
+                        $('#game-control').hide()
+                        $('#banned').hide()
+                        $('#suspended').show()
                     break;
                     case 2:
+                        console.log('2')
+                        $('#game-container').hide()
+                        $('#game-control').hide()
+                        $('#banned').show()
+                        $('#suspended').hide() //ban
                     break;
-                    case 3:
+                    case 3: //norm
+                        console.log('3')
+                        $('#game-container').show()
+                        $('#game-control').show()
+                        $('#banned').hide()
+                        $('#suspended').hide()
                     break;
                 }
             },
             dataType: "json",
             complete: poll,
-            timeout: 2000
+            timeout: 1000
         })
     }, 3000);
 })();
